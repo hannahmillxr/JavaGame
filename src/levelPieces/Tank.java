@@ -29,7 +29,27 @@ public class Tank extends GamePiece implements gameEngine.Moveable {
 	@Override
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
 		// TODO Auto-generated method stub
-		return null;
+		tankLocation = gameBoard.find('$');
+		bool blocked = False;
+		if (tankLocation<playerLocation){
+			for (int i = tankLocation; i<playerLocation; i++){
+				if (gameBoard[i]== '#' or gameBoard[i] == '^' or gameBoard[i] == '!'){
+					blocked =True;
+				}
+			}	
+		}
+		else{
+			for (int i = tankLocation; i>playerLocation; i--){
+				if (gameBoard[i]== '#' or gameBoard[i] == '^' or gameBoard[i] == '!'){
+					blocked =True;
+				}
+			}
+		}
+		if (blocked == True){
+			return InteractionResult.NONE;
+		}
+		else{
+			return InteractionResult.HIT;
+		}	
 	}
-
 }
