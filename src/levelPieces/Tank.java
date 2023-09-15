@@ -4,7 +4,7 @@ import gameEngine.Drawable;
 import gameEngine.InteractionResult;
 
 public class Tank extends GamePiece implements gameEngine.Moveable {
-
+	
 	private static char symbol = '$';
 	private static String label = "Tank";
 	public Tank(int location) {
@@ -14,9 +14,16 @@ public class Tank extends GamePiece implements gameEngine.Moveable {
 	
 	public void move(Drawable[] gameBoard, int playerLocation) {
 		// TODO Auto-generated method stub
-		
-		
-		
+		tankLocation = gameBoard.find('$');
+		gameBoard[tankLocation] = ' ';
+		tankLocation++;
+		while(gameBoard[tankLocation]!= ' '){
+			tankLocation++;
+			if (tankLocation>BOARD_SIZE){
+				tankLocation=0;
+			}
+		}
+		gameBoard[tankLocation] = '$';	
 	}
 
 	@Override
