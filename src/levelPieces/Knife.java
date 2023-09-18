@@ -22,6 +22,7 @@ public class Knife extends GamePiece implements Drawable {
 		int currPos = this.getLocation();
 		if (currPos == playerLocation) {
 			LevelSetup.setKnife(true);
+			gameBoard[this.getLocation()] = null;
 			return InteractionResult.GET_POINT;
 		}
 		return InteractionResult.NONE;
