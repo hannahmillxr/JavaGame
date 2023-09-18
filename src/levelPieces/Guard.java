@@ -7,7 +7,7 @@ import java.util.Random;
 public class Guard extends GamePiece implements gameEngine.Moveable{
 
 	private int direction = 1; //1 is right, -1 is left
-	private static char symbol = '$';
+	private static char symbol = '!';
 	private static String label = "Guard";
 	public int location;
 	public Guard(int location) {

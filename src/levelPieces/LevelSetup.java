@@ -35,9 +35,9 @@ public class LevelSetup {
 				board[7] = new Mine(7);
 				board[8] = new Knife(8);
 				board[9] = new Mine(9);
-				board[10] = new Tank(9);
+				board[10] = new Tank(10);
 				board[15] = new Bush(15);
-				board[20] = new Guard(16);
+				board[16] = new Guard(16);
 				board[20] = new Target(20);
 				break;
 				
