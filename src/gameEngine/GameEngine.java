@@ -93,9 +93,8 @@ public class GameEngine {
 	 */
 	private void displayInstructions() {
 		System.out.println("* The Game KerPlop *");
-		System.out.println("The object of the game is to capture prizes without being killed.");
-		System.out.println("You need " + Player.POINTS_TO_ADVANCE + 
-				" points to advance, you die after " + Player.POINTS_TO_DIE + " hits.") ;
+		System.out.println("The object of the game is to grabe the knife (/) and assassinated the target (^) without getting killed.");
+		System.out.println("You need to get the knife to kill the target, and you die after " + Player.POINTS_TO_DIE + " hits.") ;
 	}
 	
 

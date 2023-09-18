@@ -12,8 +12,10 @@ import gameEngine.Drawable;
 
 public class LevelSetup {
 	private Drawable[] board;
+	private static boolean knife;
 	private int playerStartLocation;
 	public void createLevel(int levelNum) {
+		setKnife(false);
 		switch(levelNum) {
 			case 1:
 				board = new Drawable[gameEngine.GameEngine.BOARD_SIZE];
@@ -63,5 +65,12 @@ public class LevelSetup {
 	
 	public int getPlayerStartLoc() {
 		return playerStartLocation;
+	}
+	
+	public static void setKnife(boolean state) {
+		knife = state;
+	}
+	public static boolean getKnife() {
+		return knife;
 	}
 }

@@ -80,9 +80,5 @@ public abstract class GamePiece implements Drawable {
 		return pickedUp;
 	}
 	
-	public void setpickedUp(boolean trueOrFalse) {
-		pickedUp = trueOrFalse;
-	}
-	
 
 }
