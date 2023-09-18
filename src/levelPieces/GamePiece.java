@@ -19,6 +19,7 @@ public abstract class GamePiece implements Drawable {
 	// Stores the piece location, which will be needed to interact
 	// with the player. 
 	private int location;
+	private boolean pickedUp;
 
 	/**
 	 * Constructor for the game piece
@@ -74,6 +75,13 @@ public abstract class GamePiece implements Drawable {
 	@Override
 	public String toString() {
 		return symbol + " - " + label ; 
+	}
+	public boolean getpickedUp() {
+		return pickedUp;
+	}
+	
+	public void setpickedUp(boolean trueOrFalse) {
+		pickedUp = trueOrFalse;
 	}
 	
 
