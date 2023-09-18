@@ -39,18 +39,23 @@ public class Tank extends GamePiece implements gameEngine.Moveable {
 		int currPos = this.getLocation();
 		
 		//Hiding in bush
-		if(gameBoard[playerLocation].getClass().getTypeName() == "Bush") 
+		if(gameBoard[playerLocation] != null && gameBoard[playerLocation].getClass().getTypeName() == "Bush") 
 			blocked = true;
+		String type;
 		if (currPos<playerLocation){
 			for (int i = currPos; i<playerLocation; i++){
-				String type = gameBoard[i].getClass().getTypeName(); 
+				type = "";
+				if (gameBoard[i] != null) 
+					type = gameBoard[i].getClass().getTypeName(); 
 				if (type== "Bush" || type== "Target" || type== "Gaurd")
 					blocked =true;
 			}	
 		}
 		else{
 			for (int i = currPos; i>playerLocation; i--){
-				String type = gameBoard[i].getClass().getTypeName(); 
+				type = "";
+				if (gameBoard[i] != null) 
+					type = gameBoard[i].getClass().getTypeName(); 
 				if (type== "Bush" || type== "Target" || type== "Gaurd")
 					blocked =true;
 			}

@@ -95,6 +95,15 @@ public class GameEngine {
 		System.out.println("* The Game KerPlop *");
 		System.out.println("The object of the game is to grabe the knife (/) and assassinated the target (^) without getting killed.");
 		System.out.println("You need to get the knife to kill the target, and you die after " + Player.POINTS_TO_DIE + " hits.") ;
+		//Print pieces
+		System.out.println(new levelPieces.Guard(0) + ": Will deal damage if you are on the same space as them or one space in their direction of travel.");
+		System.out.println(new levelPieces.Tank(0) + ": Will deal damage if you are within line of sight. Hide behind another piece or in a bush to avoid damage.");
+		System.out.println(new levelPieces.Mine(0) + ": Will kill you if you step on it.");
+		System.out.println(new levelPieces.Knife(0) + ": Neccessary to pickup before killing the target.");
+		System.out.println(new levelPieces.Target(0) + ": Your target. Pickup the knife and get to the same space as the target to advance");
+		System.out.println(new levelPieces.Bush(0) + ": A hiding spot. Hide from guards or tanks in or behind a bush.");
+		System.out.println(player);
+		
 	}
 	
 
@@ -179,11 +188,10 @@ public class GameEngine {
 	 */
 	public void interaction() {
 		for (GamePiece piece : interactingPieces) {
-			System.out.println("TEST");
 			InteractionResult result = piece.interact(gameBoard, player.getLocation());
 			if (result == InteractionResult.GET_POINT) {
 				player.addPoint();
-				System.out.println("\nYou just won a prize!\n");
+				System.out.println("\nYou just picked up the knife!\n");
 			}
 			if (result == InteractionResult.HIT) {
 				player.takeDamage();
@@ -202,7 +210,7 @@ public class GameEngine {
 			}
 			if (result == InteractionResult.ADVANCE) {
 				player.wonAdvance();
-				System.out.println("\nGood news, you have won an advance!\n");
+				System.out.println("\nGood news, you've killed the target! Advancing to next stage.\n");
 				// can only advance once
 				break;
 			}
