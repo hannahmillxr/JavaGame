@@ -23,17 +23,26 @@ public class Guard extends GamePiece implements gameEngine.Moveable{
 	public void move(Drawable[] gameBoard, int playerLocation) {
 		int currPos = this.getLocation();
 		int leftBound = -1;
-		int rightBound = -1;
-		for(int i = currPos; i < gameBoard.length; i++) { //Right object
-			if(gameBoard[i] != null || i == gameBoard.length-1) rightBound = i;
+		int rightBound = gameBoard.length;
+		
+		for(int i = currPos+1; i <= gameBoard.length; i++) { //Right object
+			if(i == gameBoard.length || gameBoard[i] != null){
+				rightBound = i;
+				break;
+			}
 		}
-		for(int i = currPos; i >= 0; i--) { //Left object
-			if(gameBoard[i] != null || i == 0) leftBound = i;
+		
+		for(int i = currPos-1; i >= -1; i--) { //Left object
+			if(i == -1 || gameBoard[i] != null){
+				leftBound = i;
+				break;
+			}
 		}
 		int nextPos = currPos + direction;
-		if(nextPos > leftBound && nextPos < rightBound) {
+		if(nextPos > leftBound && nextPos < rightBound){
 			gameBoard[currPos] = null;
-			gameBoard[nextPos] = this;
+			this.setLocation(nextPos);
+			gameBoard[this.getLocation()] = this;
 		}
 		else {
 			direction *= -1;
@@ -41,20 +50,20 @@ public class Guard extends GamePiece implements gameEngine.Moveable{
 		}
 	}
 	/**
-	 * Hits the player if adjacent or on top of them. Ignores if hiding in bush
+	 * Hits the player if in front of or on top of them. Ignores if hiding in bush
 	 */
 	@Override
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
 		int pos = this.getLocation();
 		//Check if player is hiding in a bush
-		for(int i = 0; i < gameBoard.length-1; i++) {
+		/*for(int i = 0; i < gameBoard.length-1; i++) {
 			String type = gameBoard[i].getClass().getTypeName(); //Get the subclass of the drawable
 			if(type == "Bush" && i == playerLocation){
 				return InteractionResult.NONE;
 			}
-		}
+		}*/
 		//If guard next to (or on) player
-		if(pos + 1 == playerLocation || pos - 1 == playerLocation || pos == playerLocation) return InteractionResult.HIT;
+		if(pos + direction == playerLocation || pos == playerLocation) return InteractionResult.HIT;
 		return InteractionResult.NONE;
 	}
 
