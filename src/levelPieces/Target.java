@@ -9,13 +9,21 @@ public class Target extends GamePiece implements gameEngine.Drawable {
 	private static String label = "Assassination Target";
 	public Target(int location) {
 		super(symbol, label, location);
+		this.location = location;
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
+
+	//Player will advance iff the player location matches the target location and if the player has already picked up the knife
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
 		// TODO Auto-generated method stub
-		return null;
+		int currPos = this.getLocation();
+		if (currPos == playerLocation && getpickedUp()) {
+			return InteractionResult.ADVANCE;
+		}
+		return InteractionResult.NONE;
+
 	}
 
 }
