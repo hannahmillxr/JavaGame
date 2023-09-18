@@ -7,8 +7,12 @@ import java.util.Random;
 public class Guard extends GamePiece implements gameEngine.Moveable{
 
 	private int direction = 1; //1 is right, -1 is left
-	public Guard(char symbol, String label, int location) {
+	private static char symbol = '$';
+	private static String label = "Guard";
+	public int location;
+	public Guard(int location) {
 		super(symbol, label, location);
+		this.location = location;
 	}
 	
 	/**
@@ -30,6 +34,10 @@ public class Guard extends GamePiece implements gameEngine.Moveable{
 		if(nextPos > leftBound && nextPos < rightBound) {
 			gameBoard[currPos] = null;
 			gameBoard[nextPos] = this;
+		}
+		else {
+			direction *= -1;
+			move(gameBoard, playerLocation);
 		}
 	}
 	/**

@@ -6,9 +6,12 @@ import gameEngine.InteractionResult;
 //Should actually be done!
 
 public class Mine extends GamePiece{
-
-	public Mine(char symbol, String label, int location) {
+	private static char symbol = '*';
+	private static String label = "Mine";
+	public int location;
+	public Mine(int location) {
 		super(symbol, label, location);
+		this.location = location;
 	}
 
 	@Override
