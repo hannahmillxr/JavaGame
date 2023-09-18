@@ -57,12 +57,12 @@ public class Guard extends GamePiece implements gameEngine.Moveable{
 		int pos = this.getLocation();
 		//Check if player is hiding in a bush
 		for(int i = 0; i < gameBoard.length-1; i++) {
-			if(gameBoard[i] instanceof Bush && i == playerLocation){
+			if(gameBoard[i] instanceof Bush && i == playerLocation)
 				return InteractionResult.NONE;
-			}
 		}
 		//If guard next to (or on) player
-		if(pos + direction == playerLocation || pos == playerLocation) return InteractionResult.HIT;
+		if(pos + direction == playerLocation || pos == playerLocation) 
+			return InteractionResult.HIT;
 		return InteractionResult.NONE;
 	}
 

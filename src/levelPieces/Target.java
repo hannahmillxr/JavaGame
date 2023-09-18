@@ -21,9 +21,8 @@ public class Target extends GamePiece implements gameEngine.Drawable {
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
 		// TODO Auto-generated method stub
 		int currPos = this.getLocation();
-		if (currPos == playerLocation && LevelSetup.getKnife()) {
+		if (currPos == playerLocation && LevelSetup.getKnife())
 			return InteractionResult.ADVANCE;
-		}
 		return InteractionResult.NONE;
 
 	}

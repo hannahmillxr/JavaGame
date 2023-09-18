@@ -16,7 +16,8 @@ public class Mine extends GamePiece{
 
 	@Override
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
-		if(this.getLocation() == playerLocation) return InteractionResult.KILL;
+		if(this.getLocation() == playerLocation) 
+			return InteractionResult.KILL;
 		return InteractionResult.NONE;
 	}
 

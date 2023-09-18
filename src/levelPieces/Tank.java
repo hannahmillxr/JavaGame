@@ -24,9 +24,8 @@ public class Tank extends GamePiece implements gameEngine.Moveable {
 		currPos++;
 		while(gameBoard[currPos]!= null){
 			currPos++;
-			if (currPos>gameBoard.length){
+			if (currPos>gameBoard.length)
 				currPos=0;
-			}
 		}
 		this.setLocation(currPos);
 	}
@@ -42,24 +41,20 @@ public class Tank extends GamePiece implements gameEngine.Moveable {
 		if (currPos<playerLocation){
 			for (int i = currPos; i<playerLocation; i++){
 				String type = gameBoard[i].getClass().getTypeName(); 
-				if (type== "Bush" || type== "Target" || type== "Gaurd"){
+				if (type== "Bush" || type== "Target" || type== "Gaurd")
 					blocked =true;
-				}
 			}	
 		}
 		else{
 			for (int i = currPos; i>playerLocation; i--){
 				String type = gameBoard[i].getClass().getTypeName(); 
-				if (type== "Bush" || type== "Target" || type== "Gaurd"){
+				if (type== "Bush" || type== "Target" || type== "Gaurd")
 					blocked =true;
-				}
 			}
 		}
-		if (blocked == true){
+		if (blocked == true)
 			return InteractionResult.NONE;
-		}
-		else{
-			return InteractionResult.HIT;
-		}	
+		else
+			return InteractionResult.HIT;	
 	}
 }
