@@ -3,25 +3,18 @@ package levelPieces;
 import gameEngine.Drawable;
 import gameEngine.InteractionResult;
 
-public class Mine extends GamePiece implements gameEngine.Moveable{
+//Should actually be done!
 
-	private static char symbol = '*';
-	private static String label = "Mine";
-	public Mine(int location) {
+public class Mine extends GamePiece{
+
+	public Mine(char symbol, String label, int location) {
 		super(symbol, label, location);
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void move(Drawable[] gameBoard, int playerLocation) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.getLocation() == playerLocation) return InteractionResult.KILL;
+		return InteractionResult.NONE;
 	}
 
 }
