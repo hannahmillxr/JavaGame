@@ -22,10 +22,10 @@ public class LevelSetup {
 				board[4] = new Guard(4);
 				board[5] = new Bush(5);
 				board[9] = new Mine(9);
-				board[12] = new Knife(12);
+				board[12] = new Target(12);
 				board[15] = new Bush(15);
 				board[16] = new Guard(16);
-				board[20] = new Target(20);
+				board[20] = new Knife(20);
 				break;
 				
 			case 2:
@@ -83,4 +83,10 @@ public class LevelSetup {
 	public static boolean getKnife() {
 		return knife;
 	}
+	
+	/*TODO
+	 * Fix Tank: Shoots through things :(
+	 * Test Tank
+	 * 
+	 */
 }
