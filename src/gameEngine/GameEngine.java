@@ -180,6 +180,7 @@ public class GameEngine {
 	 */
 	public void interaction() {
 		for (GamePiece piece : interactingPieces) {
+			System.out.println("TEST");
 			InteractionResult result = piece.interact(gameBoard, player.getLocation());
 			if (result == InteractionResult.GET_POINT) {
 				player.addPoint();

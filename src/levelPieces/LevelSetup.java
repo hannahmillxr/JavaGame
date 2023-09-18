@@ -17,11 +17,13 @@ public class LevelSetup {
 		switch(levelNum) {
 			case 1:
 				board = new Drawable[gameEngine.GameEngine.BOARD_SIZE];
-				board[0] = new Guard(0);
+				board[4] = new Guard(4);
 				board[5] = new Bush(5);
-				board[7] = new Mine(7);
+				board[9] = new Mine(9);
+				board[12] = new Knife(12);
 				board[15] = new Bush(15);
-				board[20] = new Guard(20);
+				board[20] = new Guard(16);
+				board[20] = new Target(20);
 				break;
 				
 			case 2:
@@ -53,8 +55,7 @@ public class LevelSetup {
 		ArrayList<GamePiece> interactingPieces = new ArrayList<GamePiece>();
 		for(Drawable piece : board) {
 			if(piece==null)continue;
-			List<Class<?>> interfaces = Arrays.asList(piece.getClass().getInterfaces());
-			if(interfaces.contains(GamePiece.class))
+			if(piece instanceof GamePiece)
 				interactingPieces.add((GamePiece)piece);
 		}
 		return interactingPieces;

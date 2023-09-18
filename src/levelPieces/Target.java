@@ -7,6 +7,8 @@ public class Target extends GamePiece implements gameEngine.Drawable {
 
 	private static char symbol = '^';
 	private static String label = "Assassination Target";
+	private int location;
+	
 	public Target(int location) {
 		super(symbol, label, location);
 		this.location = location;
