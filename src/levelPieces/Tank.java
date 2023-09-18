@@ -7,46 +7,55 @@ public class Tank extends GamePiece implements gameEngine.Moveable {
 	
 	private static char symbol = '$';
 	private static String label = "Tank";
+	private int location;
+	
 	
 	public Tank(int location) {
 		super(symbol, label, location);
+		this.location = location;
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	//the tank will always move right, it will skip over objects in its path until it finds an empty spot
 	public void move(Drawable[] gameBoard, int playerLocation) {
 		// TODO Auto-generated method stub
-		tankLocation = gameBoard.find('$'); //.find() doesnt work for arrays, use a for loop
-		gameBoard[tankLocation] = ' '; //gameBoard is a Drawable array, not a char array. Plus multiple tanks can be on the board. Look for "this" instead of '$'
-		tankLocation++;
-		while(gameBoard[tankLocation]!= ' '){ // char array see above
-			tankLocation++;
-			if (tankLocation>BOARD_SIZE){ //>= (array at 0)
-				tankLocation=0; //Do we want it to sweep back to the left or just teleport. Either way is good tbh
+		int currPos = this.getLocation();
+		currPos++;
+		while(gameBoard[currPos]!= null){
+			currPos++;
+			if (currPos>gameBoard.length){
+				currPos=0;
 			}
 		}
-		gameBoard[tankLocation] = '$';	
+		this.setLocation(currPos);
 	}
 
+	
+	// the player can hide behind a bush, the guard or the target from the tank, otherwise, tank will hit
 	@Override
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
 		// TODO Auto-generated method stub
-		tankLocation = gameBoard.find('$');
-		bool blocked = False;
-		if (tankLocation<playerLocation){
-			for (int i = tankLocation; i<playerLocation; i++){
-				if (gameBoard[i]== '#' or gameBoard[i] == '^' or gameBoard[i] == '!'){
-					blocked =True;
+		boolean blocked = false;
+		int currPos = this.getLocation();
+		
+		if (currPos<playerLocation){
+			for (int i = currPos; i<playerLocation; i++){
+				String type = gameBoard[i].getClass().getTypeName(); 
+				if (type== "Bush" || type== "Target" || type== "Gaurd"){
+					blocked =true;
 				}
 			}	
 		}
 		else{
-			for (int i = tankLocation; i>playerLocation; i--){
-				if (gameBoard[i]== '#' or gameBoard[i] == '^' or gameBoard[i] == '!'){
-					blocked =True;
+			for (int i = currPos; i>playerLocation; i--){
+				String type = gameBoard[i].getClass().getTypeName(); 
+				if (type== "Bush" || type== "Target" || type== "Gaurd"){
+					blocked =true;
 				}
 			}
 		}
-		if (blocked == True){
+		if (blocked == true){
 			return InteractionResult.NONE;
 		}
 		else{
